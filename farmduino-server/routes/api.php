@@ -31,7 +31,7 @@ Route::group(["prefix" => "v1.0.0"], function () {
     Route::post('/login', [LoginController::class, "login"]);
     Route::post('/check-color', [NewPasswordController::class, "checkColor"]);
     Route::post('/data', [ArduinoController::class, "recieveData"]);
-
+    
     Route::controller(AuthController::class)->group(function () {
         Route::get('/user-data', [ArduinoController::class, "userReceiveData"]);
         Route::get('/user-last-data', [ArduinoController::class, "userReceiveLastData"]);
@@ -43,7 +43,7 @@ Route::group(["prefix" => "v1.0.0"], function () {
         Route::get('/plant-image', [PlantController::class, "getPlantImage"]);
         Route::get('/ai', [AIController::class, "askAI"]);
     });
-
+    
     Route::group(['middleware' => 'admin.role', 'prefix' => 'admin'], function () {
         Route::get('/logs', [LogController::class, "listUserLogs"]);
         Route::get('/users', [AdminController::class, "listUsers"]);
