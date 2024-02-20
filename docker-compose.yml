@@ -1,0 +1,27 @@
+services:
+  sqldb:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=fdm24
+      - MYSQL_DATABASE=farmduino
+    container_name: farmduino-sqldb
+    ports:
+      - 3306:3306
+
+  phpma:
+    container_name: farmduino-phpma
+    image: phpmyadmin:latest
+    ports:
+      - 9001:80
+    environment:
+      - PMA_ARBITRARY=1
+
+  farmduino:
+    container_name: server
+    build: .
+    volumes:
+      - ./farmduino-server:/var/www/html
+    ports:
+      - 9000:80
+      - 8000:8000
+    command: ["/bin/bash", "startup.sh"]

@@ -5,38 +5,34 @@ import UseHttp from "../../hooks/http-request";
 
 const logo = process.env.PUBLIC_URL + "assets/icons/artificial-intelligence.png";
 
-
 export const Plant = (props) => {
   const [aiData, setAIData] = useState([]);
   const [ideal_conditions, setIdealConditions] = useState([]);
   const [plant_image, setPlantImage] = useState("")
 
-
-  // get artificial intelligence details
   useEffect(() => {
-    const artificialIntelligenceDetails = async ()=>{
-      try{ 
-        const data = await UseHttp("ai","GET","",{Authorization: "bearer"+ localStorage.getItem("token")})
+    const fetchData = async () => {
+      try {
+        const data = await UseHttp("ai","GET","",{Authorization: "bearer"+ localStorage.getItem("token")});
         setAIData(data);
         setIdealConditions(data.ideal_conditions);
-      }catch(error){
-        console.log(error)
+      } catch(error) {
+        console.log(error);
       }
-    }
-    artificialIntelligenceDetails();
+    };
+    fetchData();
   }, []);
 
-  // get plant image
   useEffect(() => {
-    const plantImage = async ()=>{
-      try{
-        const image = await UseHttp("plant-image","GET","",{Authorization: "bearer"+ localStorage.getItem("token")})
-        setPlantImage(image.image_url)
-      }catch(error){
-        console.log(error)
+    const fetchImage = async () => {
+      try {
+        const image = await UseHttp("plant-image","GET","",{Authorization: "bearer"+ localStorage.getItem("token")});
+        setPlantImage(image.image_url);
+      } catch(error) {
+        console.log(error);
       }
-    }
-    plantImage();
+    };
+    fetchImage();
   }, []);
 
   return (
@@ -52,16 +48,19 @@ export const Plant = (props) => {
           <div className={styles.plant_image_container}>
             <img src={plant_image} className={styles.plant_image} alt="Plant Image" />
           </div>
-          <Myboxnologo styles={styles.plant_species} 
-          title="Plant Species" value={aiData.Genus_species}/>
+          <Myboxnologo
+            styles={styles.plant_species} 
+            title="Plant Species" 
+            value={aiData && aiData.Genus_species ? aiData.Genus_species : ""}
+          />
         </div>
         <div className={styles.second_row}>
-          <Myboxnologo styles={styles.ai_readings} title="Temperature" value={ideal_conditions.temperature} />
-          <Myboxnologo styles={styles.ai_readings} title="Humidity" value={ideal_conditions.humidity} />
+          <Myboxnologo styles={styles.ai_readings} title="Temperature" value={ideal_conditions.temperature || ""} />
+          <Myboxnologo styles={styles.ai_readings} title="Humidity" value={ideal_conditions.humidity || ""} />
         </div>
         <div className={styles.second_row}>
-          <Myboxnologo styles={styles.ai_readings} title="Soil Moisture" value={ideal_conditions.soil_moisture} />
-          <Myboxnologo styles={styles.ai_readings} title="Light Intensity" value={ideal_conditions.light_intensity} />
+          <Myboxnologo styles={styles.ai_readings} title="Soil Moisture" value={ideal_conditions.soil_moisture || ""} />
+          <Myboxnologo styles={styles.ai_readings} title="Light Intensity" value={ideal_conditions.light_intensity || ""} />
         </div>
       </div>
     </div>
@@ -72,15 +71,15 @@ export const Plant_row = (props) => {
   const [plant_image, setPlantImage] = useState("")
 
   useEffect(() => {
-    const plantImage = async ()=>{
-      try{
-        const image = await UseHttp("plant-image","GET","",{Authorization: "bearer"+ localStorage.getItem("token")})
+    const fetchImage = async () => {
+      try {
+        const image = await UseHttp("plant-image","GET","",{Authorization: "bearer"+ localStorage.getItem("token")});
         setPlantImage(image.image_url)
-      }catch(error){
+      } catch(error) {
         console.log(error)
       }
     }
-    plantImage();
+    fetchImage();
   }, []);
 
   return (
@@ -97,11 +96,11 @@ export const Plant_row = (props) => {
           <img src={plant_image} className={styles.plant_image} alt="Plant Image" />
         </div>
        <Myboxnologo styles={styles.row_plant_species} 
-       title="Plant Species" value={props.genus_species}/>
+       title="Plant Species" value={props.genus_species || ""}/>
       </div>
       <div className={styles.row_second_row}>
-        <Myboxnologo styles={styles.row_ai_readings} title={props.condition_title} value={props.condition} />
-        <Myboxnologo styles={styles.row_ai_sentence} title="Explanation" value={props.sentence} />
+        <Myboxnologo styles={styles.row_ai_readings} title={props.condition_title || ""} value={props.condition || ""} />
+        <Myboxnologo styles={styles.row_ai_sentence} title="Explanation" value={props.sentence || ""} />
       </div>
     </div>
     </div>
