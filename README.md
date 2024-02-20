@@ -1,9 +1,9 @@
 # FarmDuino-Masters
 
-#Ali srour temporary notes:
+> FarmDuino is a desktop/mobile application designed to revolutionize greenhouse farming by providing an intuitive and efficient solution for controlling the farming environment.
+> Our goal is to empower greenhouse owners to easily manage and customize their greenhouse conditions, leading to improved crop yields and optimized farming processes.
 
-To setup farm duino server :
-
+### To setup FarmDuino Server:
 1. make a new folder in an accessible dir
 2. open terminal there
 3. git clone this repo
