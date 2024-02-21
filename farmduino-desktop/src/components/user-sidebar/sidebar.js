@@ -27,42 +27,42 @@ const Sidebar = () => {
         <img src={logo} alt="logo" className={styles.logo}/>
       </div>
       <div className={styles.buttons_container}>
-        <Link href="/dashboard" className={styles.buttons}>
+        <a href="/dashboard" className={styles.buttons}>
           <div className={styles.logos}>
             <img src={dashboard} alt="logo" className={styles.buttons_logo}/>
           </div>
             <h3 className={styles.links}>Dashboard</h3>
-        </Link>
-        <Link href="/temperature" className={styles.buttons}>
+        </a>
+        <a href="/temperature" className={styles.buttons}>
           <div className={styles.logos}>
             <img src={temperature} alt="logo" className={styles.buttons_logo}/>
           </div>
             <h3 className={styles.links}>Temperature</h3>
-        </Link>
-        <Link href="/humidity" className={styles.buttons}>
+        </a>
+        <a href="/humidity" className={styles.buttons}>
           <div className={styles.logos}>
             <img src={humidity} alt="logo" className={styles.buttons_logo}/>
           </div>
             <h3 className={styles.links}>Humidity</h3>
-        </Link>
-        <Link href="/soil-moisture" className={styles.buttons}>
+        </a>
+        <a href="/soil-moisture" className={styles.buttons}>
           <div className={styles.logos}>
             <img src={soil_moisture} alt="logo" className={styles.buttons_logo}/>
           </div>
             <h3 className={styles.links}>Soil Moisture</h3>
-        </Link>
-        <Link href="/light-intensity" className={styles.buttons}>
+        </a>
+        <a href="/light-intensity" className={styles.buttons}>
           <div className={styles.logos}>
             <img src={light_intensity} alt="logo" className={styles.buttons_logo}/>
           </div>
             <h3 className={styles.links}>Light Intensity</h3>
-        </Link>
-        <Link onClick={handleOpen} className={styles.buttons}>
+        </a>
+        <a onClick={handleOpen} className={styles.buttons}>
           <div className={styles.logos}>
             <img src={account_settings} alt="logo" className={styles.buttons_logo}/>
           </div>
             <h3 className={styles.links}>Account Settings</h3>
-        </Link>
+        </a>
         <Modal className={styles.modal}
         open={open}
         onClose={handleClose}

@@ -33,11 +33,11 @@ const AdminNavbar = () => {
           <h3 className={styles.name}>
             Admin Panel
           </h3>
-        <Link className={styles.logo_container} onClick={handleOpen}>
+        <a className={styles.logo_container} onClick={handleOpen}>
           {/* <Badge badgeContent={notifications.length} color="error">
             <img src={notifications_icon} alt="logo" className={styles.logo} />
           </Badge> */}
-        </Link>
+        </a>
         <Modal className={styles.modal} sx={{ outline: 'none', "&:focus": { outline: 'none' } }}
         open={open}
         onClose={handleClose}

@@ -54,30 +54,30 @@ const AdminSidebar = () => {
         <img src={logo} alt="logo" className={styles.logo}/>
       </div>
       <div className={styles.buttons_container}>
-        <Link href="/admin-dashboard" className={styles.buttons}>
+        <a href="/admin-dashboard" className={styles.buttons}>
           <div className={styles.logos}>
             <img src={dashboard} alt="logo" className={styles.buttons_logo}/>
           </div>
             <h3 className={styles.links}>Dashboard</h3>
-        </Link>
-        <Link href='/admin-sensors' className={styles.buttons}>
+        </a>
+        <a href='/admin-sensors' className={styles.buttons}>
           <div className={styles.logos}>
             <img src={sensors} alt="logo" className={styles.buttons_logo}/>
           </div>
             <h3 className={styles.links}>Sensors</h3>
-        </Link>
-        <Link onClick={handleOpenTicker} className={styles.buttons}>
+        </a>
+        <a onClick={handleOpenTicker} className={styles.buttons}>
           <div className={styles.logos}>
             <img src={ticker} alt="logo" className={styles.buttons_logo}/>
           </div>
             <h3 className={styles.links}>Add to Ticker</h3>
-        </Link>
-        <Link onClick={handleOpen} className={styles.buttons}>
+        </a>
+        <a onClick={handleOpen} className={styles.buttons}>
           <div className={styles.logos}>
             <img src={account_settings} alt="logo" className={styles.buttons_logo}/>
           </div>
             <h3 className={styles.links}>Account Settings</h3>
-        </Link>
+        </a>
         <Modal className={styles.modal}
         open={open}
         onClose={handleClose}
