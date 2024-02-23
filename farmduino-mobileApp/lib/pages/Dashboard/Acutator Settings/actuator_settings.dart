@@ -4,13 +4,8 @@ import 'package:flutter/material.dart';
 
 class ActuatorSettings extends StatefulWidget {
   final Size size;
-  final bool isSlidable;
   final String title;
-  const ActuatorSettings(
-      {super.key,
-      required this.size,
-      required this.isSlidable,
-      required this.title});
+  const ActuatorSettings({super.key, required this.size, required this.title});
 
   @override
   State<ActuatorSettings> createState() => _AcutatorSettingsState();
@@ -19,26 +14,21 @@ class ActuatorSettings extends StatefulWidget {
 class _AcutatorSettingsState extends State<ActuatorSettings> {
   double tempSlider = 27;
   double lightSlider = 1000;
-  bool isFansOn = true;
-  bool isLightsOn = true;
 
   @override
   Widget build(BuildContext context) {
     int temp = (tempSlider).toInt();
     int light = (lightSlider).toInt();
+
     return CustomContainer(
       width: double.infinity,
       height: 70,
       backgroundColor: CustomColors.cardColor,
-      body: (widget.isSlidable)
-          ? sliders(
-              size: widget.size,
-              variable: (widget.title == "Range of temperature") ? temp : light,
-              title: widget.title,
-            )
-          : cardWithButton(
-              title: widget.title,
-            ),
+      body: sliders(
+        size: widget.size,
+        variable: (widget.title == "Range of temperature") ? temp : light,
+        title: widget.title,
+      ),
     );
   }
 
@@ -138,66 +128,6 @@ class _AcutatorSettingsState extends State<ActuatorSettings> {
             ),
           ],
         ),
-      ],
-    );
-  }
-
-  Widget cardWithButton({
-    required String title,
-  }) {
-    Widget icon;
-    if (title == "Set fans ON/OFF manually") {
-      icon = Image.asset(
-        'assets/icons/fan.png',
-        width: 35,
-      );
-    } else if (title == "Set lights ON/OFF manually") {
-      icon = Image.asset(
-        'assets/icons/light_bulb.png',
-        width: 35,
-        color: Colors.black,
-      );
-    } else {
-      icon = const Icon(
-        Icons.forest,
-        size: 35,
-      );
-    }
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            const SizedBox(
-              width: 1,
-            ),
-            icon,
-            const SizedBox(
-              width: 5,
-            ),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-        Switch(
-          value: (title == "Set fans ON/OFF manually") ? isFansOn : isLightsOn,
-          activeColor: Colors.white,
-          activeTrackColor: Colors.blue,
-          onChanged: (value) {
-            setState(() {
-              if (title == "Set fans ON/OFF manually") {
-                isFansOn = !isFansOn;
-              } else if (title == "Set lights ON/OFF manually") {
-                isLightsOn = !isLightsOn;
-              }
-            });
-          },
-        )
       ],
     );
   }

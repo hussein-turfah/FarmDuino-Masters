@@ -84,17 +84,83 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+   
+    - family: DM_Sans
+      fonts:
+        - asset: assets/fonts/DMSans-Thin.ttf
+        - asset: assets/fonts/DMSans-ExtraLight.ttf
+        - asset: assets/fonts/DMSans-Light.ttf
+        - asset: assets/fonts/DMSans-Regular.ttf
+        - asset: assets/fonts/DMSans-Medium.ttf
+        - asset: assets/fonts/DMSans-SemiBold.ttf
+        - asset: assets/fonts/DMSans-Bold.ttf
+        - asset: assets/fonts/DMSans-ExtraBold.ttf
+        - asset: assets/fonts/DMSans-Black.ttf
+        - asset: assets/fonts/DMSans_18pt-Thin.ttf
+        - asset: assets/fonts/DMSans_18pt-ExtraLight.ttf
+        - asset: assets/fonts/DMSans_18pt-Light.ttf
+        - asset: assets/fonts/DMSans_18pt-Regular.ttf
+        - asset: assets/fonts/DMSans_18pt-Medium.ttf
+        - asset: assets/fonts/DMSans_18pt-SemiBold.ttf
+        - asset: assets/fonts/DMSans_18pt-Bold.ttf
+        - asset: assets/fonts/DMSans_18pt-ExtraBold.ttf
+        - asset: assets/fonts/DMSans_18pt-Black.ttf
+        - asset: assets/fonts/DMSans_24pt-Thin.ttf
+        - asset: assets/fonts/DMSans_24pt-ExtraLight.ttf
+        - asset: assets/fonts/DMSans_24pt-Light.ttf
+        - asset: assets/fonts/DMSans_24pt-Regular.ttf
+        - asset: assets/fonts/DMSans_24pt-Medium.ttf
+        - asset: assets/fonts/DMSans_24pt-SemiBold.ttf
+        - asset: assets/fonts/DMSans_24pt-Bold.ttf
+        - asset: assets/fonts/DMSans_24pt-ExtraBold.ttf
+        - asset: assets/fonts/DMSans_24pt-Black.ttf
+        - asset: assets/fonts/DMSans_36pt-Thin.ttf
+        - asset: assets/fonts/DMSans_36pt-ExtraLight.ttf
+        - asset: assets/fonts/DMSans_36pt-Light.ttf
+        - asset: assets/fonts/DMSans_36pt-Regular.ttf
+        - asset: assets/fonts/DMSans_36pt-Medium.ttf
+        - asset: assets/fonts/DMSans_36pt-SemiBold.ttf
+        - asset: assets/fonts/DMSans_36pt-Bold.ttf
+        - asset: assets/fonts/DMSans_36pt-ExtraBold.ttf
+        - asset: assets/fonts/DMSans_36pt-Black.ttf
+        - asset: assets/fonts/DMSans-ThinItalic.ttf
+        - asset: assets/fonts/DMSans-ExtraLightItalic.ttf
+        - asset: assets/fonts/DMSans-LightItalic.ttf
+        - asset: assets/fonts/DMSans-Italic.ttf
+        - asset: assets/fonts/DMSans-MediumItalic.ttf
+        - asset: assets/fonts/DMSans-SemiBoldItalic.ttf
+        - asset: assets/fonts/DMSans-BoldItalic.ttf
+        - asset: assets/fonts/DMSans-ExtraBoldItalic.ttf
+        - asset: assets/fonts/DMSans-BlackItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-ThinItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-ExtraLightItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-LightItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-Italic.ttf
+        - asset: assets/fonts/DMSans_18pt-MediumItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-SemiBoldItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-BoldItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-ExtraBoldItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-BlackItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-ThinItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-ExtraLightItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-LightItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-Italic.ttf
+        - asset: assets/fonts/DMSans_24pt-MediumItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-SemiBoldItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-BoldItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-ExtraBoldItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-BlackItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-ThinItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-ExtraLightItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-LightItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-Italic.ttf
+        - asset: assets/fonts/DMSans_36pt-MediumItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-SemiBoldItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-BoldItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-ExtraBoldItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-BlackItalic.ttf
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

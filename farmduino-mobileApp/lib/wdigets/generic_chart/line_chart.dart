@@ -116,7 +116,6 @@ class GenericLineChart extends StatelessWidget {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.max,
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(4),
@@ -130,44 +129,46 @@ class GenericLineChart extends StatelessWidget {
                         const SizedBox(
                           width: 7,
                         ),
-                        CustomContainer(
-                          width: 172,
-                          height: 130,
-                          backgroundColor:
-                              const Color.fromARGB(99, 210, 210, 210),
-                          withShadow: false,
-                          body: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Row(
-                                children: [
-                                  SizedBox(
-                                    width: 7,
-                                  ),
-                                  Text(
-                                    'Planet Species',
-                                    style: TextStyle(
-                                      fontSize: 14,
+                        Expanded(
+                          child: CustomContainer(
+                            width: null,
+                            height: 130,
+                            backgroundColor:
+                                const Color.fromARGB(99, 210, 210, 210),
+                            withShadow: false,
+                            body: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 7,
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  const SizedBox(
-                                    width: 7,
-                                  ),
-                                  Text(
-                                    plantSpecies,
-                                    style: const TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
+                                    Text(
+                                      'Planet Species',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    const SizedBox(
+                                      width: 7,
+                                    ),
+                                    Text(
+                                      plantSpecies,
+                                      style: const TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -180,14 +181,14 @@ class GenericLineChart extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Row(
+                          Row(
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 width: 7,
                               ),
                               Text(
-                                'Ideal Temperature',
-                                style: TextStyle(
+                                'Ideal $chartText',
+                                style: const TextStyle(
                                   fontSize: 14,
                                 ),
                               ),

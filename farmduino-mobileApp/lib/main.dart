@@ -9,11 +9,13 @@ import 'package:farmduino/pages/temperature/temperature_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
       title: 'Farmduino',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'DM_Sans',
         colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromARGB(255, 141, 66, 239)),
         useMaterial3: true,

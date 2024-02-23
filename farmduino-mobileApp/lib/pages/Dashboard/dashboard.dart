@@ -1,5 +1,7 @@
 import 'dart:developer';
 import 'package:farmduino/constants/colors.dart';
+import 'package:farmduino/pages/Dashboard/Acutator%20Settings/on_off_cards.dart';
+import 'package:farmduino/services/logic/logic.dart';
 import 'package:farmduino/wdigets/appbar/appbar.dart';
 import 'package:farmduino/pages/Dashboard/Acutator%20Settings/actuator_settings.dart';
 import 'package:farmduino/pages/Dashboard/details/plant_details.dart';
@@ -15,6 +17,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  Logic logic = Logic();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -57,28 +60,39 @@ class _DashboardState extends State<Dashboard> {
               const SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                height: 160,
-                child: ListView(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    cards(title: 'Tempreture', details: '20'),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    cards(title: 'Humidity', details: '25'),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    cards(title: 'Soil Moisture', details: '10'),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    cards(title: 'Light Intensity', details: '30'),
-                  ],
-                ),
-              ),
+              FutureBuilder(
+                  future: logic.getData(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      final data = snapshot.data as List;
+                      return SizedBox(
+                        height: 170,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: data.length,
+                          itemBuilder: (context, index) {
+                            return Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                SizedBox(
+                                  height: 170,
+                                  child: cards(
+                                      title: data[index]['name'],
+                                      details: data[index]['value']),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                )
+                              ],
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return const Text('no data');
+                    }
+                  }),
               const SizedBox(
                 height: 20,
               ),
@@ -95,9 +109,22 @@ class _DashboardState extends State<Dashboard> {
                   const SizedBox(
                     height: 20,
                   ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      OnOffCards(
+                        title: 'Fans',
+                      ),
+                      OnOffCards(
+                        title: 'Lights',
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   ActuatorSettings(
                     size: size,
-                    isSlidable: true,
                     title: 'Range of temperature',
                   ),
                   const SizedBox(
@@ -105,34 +132,17 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   ActuatorSettings(
                     size: size,
-                    isSlidable: false,
-                    title: "Set fans ON/OFF manually",
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  ActuatorSettings(
-                    size: size,
-                    isSlidable: true,
                     title: 'Range of light',
                   ),
                   const SizedBox(
-                    height: 15,
-                  ),
-                  ActuatorSettings(
-                    size: size,
-                    isSlidable: false,
-                    title: "Set lights ON/OFF manually",
-                  ),
-                  const SizedBox(
-                    height: 23,
+                    height: 35,
                   ),
                   const Text(
                     'Weather Forecast',
                     style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'RobotoSlab'),
                   ),
                   const SizedBox(
                     height: 10,
@@ -203,28 +213,28 @@ class _DashboardState extends State<Dashboard> {
   }
 }
 
-Widget cards({required String title, required String details}) {
+Widget cards({required String title, required int details}) {
   Icon icon;
   String unit = '';
-  if (title == "Tempreture") {
+  if (title == "temperature") {
     icon = const Icon(
       Icons.thermostat,
       size: 35,
     );
     unit = '°C';
-  } else if (title == "Humidity") {
+  } else if (title == "humidity") {
     icon = const Icon(
       Icons.water_drop_outlined,
       size: 35,
     );
     unit = '%';
-  } else if (title == "Soil Moisture") {
+  } else if (title == "soil_moisture") {
     icon = const Icon(
       Icons.water,
       size: 35,
     );
     unit = '%';
-  } else if (title == "Light Intensity") {
+  } else if (title == "light_intensity") {
     icon = const Icon(
       Icons.lightbulb_outline,
       size: 35,

@@ -1,4 +1,5 @@
 import 'package:farmduino/constants/colors.dart';
+import 'package:farmduino/services/logic/logic.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -10,10 +11,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: const Text('Farmduino'),
       centerTitle: true,
       backgroundColor: CustomColors.pageBackgroundColor,
-      actions: const [
-        Icon(
-          Icons.settings_outlined,
-          size: 33,
+      actions: [
+        IconButton(
+          onPressed: () async {
+            Logic logic = Logic();
+            logic.getData();
+          },
+          icon: const Icon(
+            Icons.settings_outlined,
+            size: 33,
+          ),
         )
       ],
     );

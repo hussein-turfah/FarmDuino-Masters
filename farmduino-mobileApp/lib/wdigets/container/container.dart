@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomContainer extends StatelessWidget {
-  final double width;
+  final double? width;
   final double? height;
   final Widget body;
   final Color backgroundColor;
