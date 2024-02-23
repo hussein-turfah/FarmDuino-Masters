@@ -42,10 +42,18 @@ class ArduinoController extends Controller
     }
 
     public function userReceiveData(){
-        $data = Sensor::where('greenhouses_users_id', auth()->user()->id)
-        ->orderBy('created_at', 'asc')
-        ->take(40)
-        ->get();
+        // $data = Sensor::where('greenhouses_users_id', auth()->user()->id)
+        // ->orderBy('created_at', 'asc')
+        // ->take(40)
+        // ->get();
+        $data = [
+            ['name' => 'temperature', 'value' => 25],
+            ['name' => 'humidity', 'value' => 60],
+            ['name' => 'soil_moisture', 'value' => 40],
+            ['name' => 'light_intensity', 'value' => 100]
+        ];
+
+
 
         return response()->json($data, 200);
     }
