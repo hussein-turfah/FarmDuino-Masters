@@ -1,0 +1,5 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "cmake.sourceDirectory": "C:/programming/Flutter/farmduino/linux",
+    "java.configuration.updateBuildConfiguration": "interactive"
+}
