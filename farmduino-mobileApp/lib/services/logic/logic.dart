@@ -7,18 +7,32 @@ import 'package:http/http.dart' as http;
 
 class Logic {
   Future<List> getData() async {
-    final request = await http.get(
+    final respose = await http.get(
         Uri.parse(
           '$httpUrl/user-data',
         ),
         headers: {'Authorization': Variables.token});
-    if (request.statusCode == 200) {
+    if (respose.statusCode == 200) {
       log('success');
-      List data = json.decode(request.body);
+      List data = json.decode(respose.body);
       return data;
     } else {
       log('fail');
-      log(request.body);
+      log(respose.body);
+      return [];
+    }
+  }
+
+  Future<List> getWeather() async {
+    final respose = await http.get(
+      Uri.parse('$httpUrl/weather'),
+      headers: {
+        'Authorization': Variables.token,
+      },
+    );
+    if (respose.statusCode == 200) {
+      return json.decode(respose.body);
+    } else {
       return [];
     }
   }

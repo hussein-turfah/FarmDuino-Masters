@@ -23,176 +23,191 @@ class _DashboardState extends State<Dashboard> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: const CustomAppBar(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'General Details',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
+      body: FutureBuilder(
+          future: logic.getData(),
+          builder: (context, snapshot) {
+            final data = snapshot.data;
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  DropdownButton(
-                    items: const [
-                      DropdownMenuItem(
-                        child: Text(
-                          'Greenhouse 1',
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'General Details',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                    ],
-                    underline: Container(
-                      height: 0,
-                    ),
-                    onChanged: (value) {},
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              FutureBuilder(
-                  future: logic.getData(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      final data = snapshot.data as List;
-                      return SizedBox(
-                        height: 170,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: data.length,
-                          itemBuilder: (context, index) {
-                            return Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                SizedBox(
-                                  height: 170,
-                                  child: cards(
-                                      title: data[index]['name'],
-                                      details: data[index]['value']),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                )
-                              ],
-                            );
-                          },
-                        ),
-                      );
-                    } else {
-                      return const Text('no data');
-                    }
-                  }),
-              const SizedBox(
-                height: 20,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Actuator Settings',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      OnOffCards(
-                        title: 'Fans',
-                      ),
-                      OnOffCards(
-                        title: 'Lights',
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  ActuatorSettings(
-                    size: size,
-                    title: 'Range of temperature',
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  ActuatorSettings(
-                    size: size,
-                    title: 'Range of light',
-                  ),
-                  const SizedBox(
-                    height: 35,
-                  ),
-                  const Text(
-                    'Weather Forecast',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'RobotoSlab'),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    height: 200,
-                    child: ListView(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      children: const [
-                        WeatherWidget(
-                          date: 'Wednesday 21 Feb',
-                          temp: '16°C',
-                          humidity: '50%',
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        WeatherWidget(
-                          date: 'Wednesday 22 Feb',
-                          temp: '18°C',
-                          humidity: '35%',
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        WeatherWidget(
-                          date: 'Wednesday 23 Feb',
-                          temp: '19°C',
-                          humidity: '55%',
+                        DropdownButton(
+                          items: const [
+                            DropdownMenuItem(
+                              child: Text(
+                                'Greenhouse 1',
+                              ),
+                            ),
+                          ],
+                          underline: Container(
+                            height: 0,
+                          ),
+                          onChanged: (value) {},
                         ),
                       ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Plantdetails(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ],
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    (data != null)
+                        ? SizedBox(
+                            height: 170,
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemCount: data.length,
+                              itemBuilder: (context, index) {
+                                return Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    SizedBox(
+                                      height: 170,
+                                      child: cards(
+                                          title: data[index]['name'],
+                                          details: data[index]['value']),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    )
+                                  ],
+                                );
+                              },
+                            ),
+                          )
+                        : const Text('no data'),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Actuator Settings',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            OnOffCards(
+                              title: 'Fans',
+                            ),
+                            OnOffCards(
+                              title: 'Lights',
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        ActuatorSettings(
+                          size: size,
+                          title: 'Range of temperature',
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        ActuatorSettings(
+                          size: size,
+                          title: 'Range of light',
+                        ),
+                        const SizedBox(
+                          height: 35,
+                        ),
+                        const Text(
+                          'Weather Forecast',
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'RobotoSlab'),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          height: 200,
+                          child: FutureBuilder(
+                            future: logic.getWeather(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData &&
+                                  snapshot.data != null &&
+                                  snapshot.data!.isNotEmpty) {
+                                final data = snapshot.data;
+                                return ListView.builder(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: snapshot.data!.length,
+                                  itemBuilder: (context, index) {
+                                    return Row(
+                                      children: [
+                                        SizedBox(
+                                          height: 200,
+                                          child: WeatherWidget(
+                                            date: data![index]['date'],
+                                            temp:
+                                                '${data[index]['temperature']}°C',
+                                            humidity:
+                                                '${data[index]['humidity']}%',
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              } else {
+                                return const Text('Something went wrong');
+                              }
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        (data != null)
+                            ? Plantdetails(
+                                temp: data[0]['value'],
+                                humidity: data[1]['value'],
+                                soilMoisture: data[2]['value'],
+                                light: data[3]['value'],
+                                plantName: 'Banana',
+                              )
+                            : const Text('No Data'),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    )
+                  ],
+                ),
               ),
-              const SizedBox(
-                height: 40,
-              )
-            ],
-          ),
-        ),
-      ),
+            );
+          }),
       floatingActionButton: SizedBox(
         height: 70,
         width: 70,

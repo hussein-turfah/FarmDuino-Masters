@@ -3,14 +3,23 @@ import 'package:farmduino/wdigets/container/container.dart';
 import 'package:flutter/material.dart';
 
 class Plantdetails extends StatelessWidget {
-  const Plantdetails({super.key});
+  final String plantName;
+  final int temp;
+  final int humidity;
+  final int light;
+  final int soilMoisture;
+
+  const Plantdetails({
+    super.key,
+    required this.temp,
+    required this.humidity,
+    required this.light,
+    required this.soilMoisture,
+    required this.plantName,
+  });
 
   @override
   Widget build(BuildContext context) {
-    const int temp = 20;
-    const int humidity = 35;
-    const int light = 500;
-    const int moisture = 75;
     return CustomContainer(
       width: double.infinity,
       height: 510,
@@ -36,24 +45,24 @@ class Plantdetails extends StatelessWidget {
                 const SizedBox(
                   width: 15,
                 ),
-                const Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Text(
+                    const Text(
                       'Planet species',
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 65,
                     ),
                     Text(
-                      'Banana',
-                      style: TextStyle(
+                      plantName,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
                       ),
@@ -70,8 +79,8 @@ class Plantdetails extends StatelessWidget {
               'Temperature',
               context,
               '°C',
-              -10,
-              45,
+              10,
+              50,
             ),
             const SizedBox(
               height: 10,
@@ -93,13 +102,13 @@ class Plantdetails extends StatelessWidget {
               context,
               'lx',
               0,
-              1000,
+              2000,
             ),
             const SizedBox(
               height: 10,
             ),
             planetSliders(
-              moisture,
+              soilMoisture,
               'Soil moisture',
               context,
               '%',
