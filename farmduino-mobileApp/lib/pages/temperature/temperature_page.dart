@@ -10,9 +10,9 @@ class TemperaturePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: CustomAppBar(),
-      body: GenericLineChart(
+    return Scaffold(
+      appBar: const CustomAppBar(),
+      body: const GenericLineChart(
         chartText: 'Temperature',
         plantSpecies: 'Banana',
         idealVariable: '10-20 °C',
@@ -30,7 +30,7 @@ class TemperaturePage extends StatelessWidget {
         maxY: 50,
       ),
       backgroundColor: CustomColors.pageBackgroundColor,
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
     );
   }
 }

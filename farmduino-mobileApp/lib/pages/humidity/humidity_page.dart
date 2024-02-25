@@ -10,10 +10,10 @@ class HumedityPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: CustomAppBar(),
-      drawer: CustomDrawer(),
-      body: GenericLineChart(
+    return Scaffold(
+      appBar: const CustomAppBar(),
+      drawer: const CustomDrawer(),
+      body: const GenericLineChart(
         chartText: 'Humidity',
         plantSpecies: 'Banana',
         idealVariable: '90-95%',

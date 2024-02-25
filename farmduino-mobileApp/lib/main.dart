@@ -1,4 +1,5 @@
 import 'package:farmduino/constants/routs.dart';
+import 'package:farmduino/constants/themes/dark_theme.dart';
 import 'package:farmduino/pages/Dashboard/dashboard.dart';
 import 'package:farmduino/pages/humidity/humidity_page.dart';
 import 'package:farmduino/pages/light%20intensity/light_intensity_page.dart';
@@ -14,6 +15,7 @@ void main() {
     MaterialApp(
       title: 'Farmduino',
       debugShowCheckedModeBanner: false,
+      //darkTheme: darkTheme,
       theme: ThemeData(
         fontFamily: 'DM_Sans',
         colorScheme: ColorScheme.fromSeed(

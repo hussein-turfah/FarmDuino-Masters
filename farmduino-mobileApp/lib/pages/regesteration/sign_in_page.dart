@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:farmduino/constants/colors.dart';
 import 'package:farmduino/constants/routs.dart';
 import 'package:farmduino/constants/variables.dart';
+import 'package:farmduino/helpers/loading/loading_screen.dart';
 import 'package:farmduino/services/auth/auth_services.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -153,10 +154,15 @@ class _SignInPageState extends State<SignInPage> {
                                 onTap: () async {
                                   if (email.text.isNotEmpty &&
                                       password.text.isNotEmpty) {
+                                    LoadingScreen().show(
+                                        context: context,
+                                        showCircularIndecator: true,
+                                        text: 'please wait a minute');
                                     final response = await auth.login(
                                       email: email.text,
                                       password: password.text,
                                     );
+                                    log('$response');
                                     if (response["success"] == true) {
                                       String firstName = response['body']
                                           ['user']['first_name'];
@@ -168,14 +174,37 @@ class _SignInPageState extends State<SignInPage> {
                                           response['body']['user']['email'];
                                       Variables.token =
                                           response['body']['token'];
+                                      LoadingScreen().hide();
                                       // ignore: use_build_context_synchronously
                                       Navigator.of(context)
                                           .pushNamedAndRemoveUntil(
                                         dashboardRoute,
                                         (route) => false,
                                       );
+                                    } else {
+                                      LoadingScreen().hide();
+                                      // ignore: use_build_context_synchronously
+                                      LoadingScreen().show(
+                                          context: context,
+                                          showCircularIndecator: false,
+                                          text: '${response['body']['error']}');
+
+                                      await Future.delayed(
+                                        const Duration(seconds: 2),
+                                      );
+                                      LoadingScreen().hide();
                                     }
                                   } else {
+                                    LoadingScreen().hide();
+                                    LoadingScreen().show(
+                                        context: context,
+                                        showCircularIndecator: false,
+                                        text: 'something went wrong');
+
+                                    await Future.delayed(
+                                      const Duration(seconds: 4),
+                                    );
+                                    LoadingScreen().hide();
                                     log('is empty');
                                   }
                                 },

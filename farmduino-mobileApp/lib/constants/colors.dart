@@ -1,3 +1,4 @@
+import 'package:farmduino/constants/variables.dart';
 import 'package:flutter/material.dart';
 
 class CustomColors {
@@ -9,5 +10,7 @@ class CustomColors {
   // Color.fromARGB(255, 251, 37, 118);
 
   static const cardColor = Color.fromARGB(255, 248, 248, 248);
-  static const pageBackgroundColor = Color.fromARGB(255, 240, 243, 245);
+  static final pageBackgroundColor = (!Variables.isDarkTheme)
+      ? const Color.fromARGB(255, 240, 243, 245)
+      : const Color.fromARGB(255, 18, 18, 18);
 }

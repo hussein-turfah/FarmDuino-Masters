@@ -10,9 +10,9 @@ class LightIntensityPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: CustomAppBar(),
-      body: GenericLineChart(
+    return Scaffold(
+      appBar: const CustomAppBar(),
+      body: const GenericLineChart(
         chartText: 'Light intensity',
         plantSpecies: 'Banana',
         idealVariable: '30,000-100,000 lux.',
@@ -30,7 +30,7 @@ class LightIntensityPage extends StatelessWidget {
         maxY: 100000,
       ),
       backgroundColor: CustomColors.pageBackgroundColor,
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
     );
   }
 }

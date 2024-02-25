@@ -10,9 +10,9 @@ class SoilMoisturePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: CustomAppBar(),
-      body: GenericLineChart(
+    return Scaffold(
+      appBar: const CustomAppBar(),
+      body: const GenericLineChart(
         chartText: 'Soil moisture',
         plantSpecies: 'Banana',
         idealVariable: '40-80 %',
@@ -30,7 +30,7 @@ class SoilMoisturePage extends StatelessWidget {
         maxY: 100,
       ),
       backgroundColor: CustomColors.pageBackgroundColor,
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
     );
   }
 }

@@ -36,17 +36,27 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 45,
                         child: Icon(Icons.person),
                       ),
-                      Icon(
-                        Icons.wb_sunny_outlined,
-                        size: 35,
-                        color: Colors.white,
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            Variables.isDarkTheme = !Variables.isDarkTheme;
+                            Theme.of(context).colorScheme.inversePrimary;
+                          });
+                        },
+                        icon: Icon(
+                          (Variables.isDarkTheme)
+                              ? Icons.mode_night_outlined
+                              : Icons.wb_sunny_outlined,
+                          size: 35,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
