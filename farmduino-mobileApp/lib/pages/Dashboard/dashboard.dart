@@ -23,7 +23,9 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const CustomAppBar(
+        displaySettingsIcon: true,
+      ),
       body: FutureBuilder(
           future: logic.getData(),
           builder: (context, snapshot) {
@@ -231,7 +233,7 @@ class _DashboardState extends State<Dashboard> {
         ),
       ),
       drawer: const CustomDrawer(),
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: CustomColors.pageBackgroundColor,
     );
   }
 }

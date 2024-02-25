@@ -1,8 +1,8 @@
 import 'dart:developer';
 import 'package:farmduino/constants/colors.dart';
 import 'package:farmduino/constants/routs.dart';
-import 'package:farmduino/constants/variables.dart';
 import 'package:farmduino/helpers/loading/loading_screen.dart';
+import 'package:farmduino/pages/regesteration/login_function.dart';
 import 'package:farmduino/services/auth/auth_services.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -164,22 +164,12 @@ class _SignInPageState extends State<SignInPage> {
                                     );
                                     log('$response');
                                     if (response["success"] == true) {
-                                      String firstName = response['body']
-                                          ['user']['first_name'];
-                                      String lastName =
-                                          response['body']['user']['last_name'];
-                                      Variables.currentUser =
-                                          '$firstName  $lastName';
-                                      Variables.email =
-                                          response['body']['user']['email'];
-                                      Variables.token =
-                                          response['body']['token'];
-                                      LoadingScreen().hide();
                                       // ignore: use_build_context_synchronously
-                                      Navigator.of(context)
-                                          .pushNamedAndRemoveUntil(
-                                        dashboardRoute,
-                                        (route) => false,
+                                      login(
+                                        response: response,
+                                        context: context,
+                                        email: email.text,
+                                        password: password.text,
                                       );
                                     } else {
                                       LoadingScreen().hide();

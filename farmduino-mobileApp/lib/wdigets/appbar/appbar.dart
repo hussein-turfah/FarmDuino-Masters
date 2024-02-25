@@ -1,9 +1,10 @@
 import 'package:farmduino/constants/colors.dart';
-import 'package:farmduino/services/logic/logic.dart';
+import 'package:farmduino/constants/routs.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key});
+  final bool displaySettingsIcon;
+  const CustomAppBar({super.key, required this.displaySettingsIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -12,16 +13,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       backgroundColor: CustomColors.pageBackgroundColor,
       actions: [
-        IconButton(
-          onPressed: () async {
-            Logic logic = Logic();
-            logic.getData();
-          },
-          icon: const Icon(
-            Icons.settings_outlined,
-            size: 33,
-          ),
-        )
+        (displaySettingsIcon)
+            ? IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(settingsPage);
+                },
+                icon: const Icon(
+                  Icons.settings_outlined,
+                  size: 33,
+                ),
+              )
+            : Container(),
       ],
     );
   }

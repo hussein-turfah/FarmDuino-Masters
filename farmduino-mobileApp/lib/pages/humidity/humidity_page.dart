@@ -5,13 +5,15 @@ import 'package:farmduino/wdigets/generic_chart/line_chart.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class HumedityPage extends StatelessWidget {
-  const HumedityPage({super.key});
+class HumidityPage extends StatelessWidget {
+  const HumidityPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const CustomAppBar(
+        displaySettingsIcon: true,
+      ),
       drawer: const CustomDrawer(),
       body: const GenericLineChart(
         chartText: 'Humidity',

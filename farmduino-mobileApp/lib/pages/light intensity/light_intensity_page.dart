@@ -11,7 +11,9 @@ class LightIntensityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const CustomAppBar(
+        displaySettingsIcon: true,
+      ),
       body: const GenericLineChart(
         chartText: 'Light intensity',
         plantSpecies: 'Banana',

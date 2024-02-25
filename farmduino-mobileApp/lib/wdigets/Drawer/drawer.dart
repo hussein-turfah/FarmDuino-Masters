@@ -2,6 +2,7 @@ import 'package:farmduino/constants/colors.dart';
 import 'package:farmduino/constants/routs.dart';
 import 'package:farmduino/constants/variables.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
@@ -47,7 +48,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         onPressed: () {
                           setState(() {
                             Variables.isDarkTheme = !Variables.isDarkTheme;
-                            Theme.of(context).colorScheme.inversePrimary;
                           });
                         },
                         icon: Icon(
@@ -66,14 +66,29 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        Variables.currentUser,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      FutureBuilder(
+                          future: getUserName(),
+                          builder: (context, snapshot) {
+                            if (snapshot.data != null) {
+                              return Text(
+                                snapshot.data!,
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              );
+                            } else {
+                              return const Text(
+                                'User',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              );
+                            }
+                          }),
                       const Text(
                         '▼',
                         style: TextStyle(
@@ -262,4 +277,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
       ),
     );
   }
+}
+
+Future<String?> getUserName() async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? name = prefs.getString('name');
+  if (name != null) {
+    return name;
+  }
+  return null;
 }
