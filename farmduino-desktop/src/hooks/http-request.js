@@ -1,6 +1,6 @@
 const UseHttp = async (url, method = "GET", body = "", header = {}) => {
   let data;
-  const URL = "https://farmduino-server.vercel.app/api/v1.0.0/";
+  const URL = "http://127.0.0.1:8000/api/v1.0.0/";
   try {
     const Response =
       (await fetch(URL + url, {
