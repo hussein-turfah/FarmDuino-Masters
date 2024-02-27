@@ -49,7 +49,7 @@ To ensure the smooth functioning of your FarmDuino app, please make sure you hav
 
 ##### c. MobileApp Wise (If you wanted to build the app yourself)
 
-- Download **Flutter SDK** => [v3.19.1 as of now](https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.19.1-stable.zip)
+- Download **Flutter SDK** => [v3.19.1 as of now](https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.19.1-stable.zip). More info [here](farmduino-mobileApp/README.md)
 
 ##### d. Arduino Wise
 
@@ -72,7 +72,7 @@ After you downloaded all the dependencies you need in your case, let's guide you
 4. to setup the
    - **Backend**, cd into `farmduino-server` and `php artisan migrate`, then `php artisan db:seed`
    - **Web/Desktop** app, cd into `farmduino-desktop`and type `npm install` to install react deps
-   - **Mobile**, cd into `farmduino-mobileApp` and type `pub get` to fetch deps, then `flutter build apk` to build for android, and `flutter build ios` to build for ios (macos required to build for ios)
+   - **Mobile**, cd into `farmduino-mobileApp` and type `pub get` to fetch deps, then `flutter build apk` to build for android, and `flutter build ios` to build for ios (macos required to build for ios). More info to setup the dev env of flutter [here](farmduino-mobileApp/README.md)
    - **Arduino**, just open the ide and connect your arduino then upload the code in `farmduino-arduino` to your board
 
 <br><hr width="50%" color="white">
@@ -94,7 +94,7 @@ After you downloaded all the dependencies you need in your case, let's guide you
 
 ##### MobileApp Wise (If you wanted to build the app yourself)
 
-- Download **Flutter SDK**, tutorial => [here](https://docs.flutter.dev/get-started/install/linux)
+- Download **Flutter SDK**, tutorial => [here](https://docs.flutter.dev/get-started/install/linux). More info [here](farmduino-mobileApp/README.md)
 
 ##### Arduino Wise
 
